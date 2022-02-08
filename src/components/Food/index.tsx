@@ -5,7 +5,7 @@ import { Container } from './styles.ts';
 import api from '../../services/api';
 import { useState } from 'react';
 
-interface Food {
+interface FoodData {
   id: number
   image: string
   name: string
@@ -15,9 +15,9 @@ interface Food {
 }
 
 interface FoodProps {
-  food: Food
+  food: FoodData
   handleDelete: (fooId: number) => void
-  handleEditFood: (food: Food) => void
+  handleEditFood: (food: FoodData) => void
 }
 
 export function Food({ food, handleDelete, handleEditFood }: FoodProps) {
