@@ -9,6 +9,7 @@ import {
 import { useField } from '@unform/core';
 
 import { Container } from './styles';
+
 import { IconType } from 'react-icons/lib';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
