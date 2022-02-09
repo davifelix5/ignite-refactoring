@@ -9,21 +9,25 @@ import { FormHandles } from '@unform/core';
 
 interface ModalEditFoodProps {
   isOpen: boolean
-  setIsOpen: () => void
-  handleEditFood: (food: FoodData) => Promise<void>
-  editingFood: FoodData
+  closeModal: () => void
+  handleUpdateFood: (food: FoodData) => Promise<void>
+  editingFood: null | FoodData
 }
 
-export function ModalEditFood({ isOpen, setIsOpen, editingFood, handleEditFood }: ModalEditFoodProps) {
+export function ModalEditFood({ isOpen, closeModal, editingFood, handleUpdateFood }: ModalEditFoodProps) {
   const formRef = useRef<null | FormHandles>(null)
 
   async function handleSubmit(data: FoodData) {
-    await handleEditFood(data)
-    setIsOpen()
+    await handleUpdateFood(data)
+    closeModal()
+  }
+
+  if (!editingFood) {
+    return null
   }
 
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+    <Modal isOpen={isOpen} closeModal={closeModal}>
       <Form ref={formRef} onSubmit={handleSubmit} initialData={editingFood}>
         <h1>Editar Prato</h1>
         <Input name="image" placeholder="Cole o link aqui" />

@@ -9,21 +9,21 @@ import { FormHandles } from '@unform/core';
 
 interface ModalAddFoodProps {
   isOpen: boolean
-  setIsOpen: () => void
+  closeModal: () => void
   handleAddFood: (food: FoodData) => Promise<void>
 }
 
-export function ModalAddFood({ isOpen, setIsOpen, handleAddFood }: ModalAddFoodProps) {
+export function ModalAddFood({ isOpen, closeModal, handleAddFood }: ModalAddFoodProps) {
 
   const formRef = useRef<null | FormHandles>(null)
 
   async function handleSubmit(data: FoodData) {
     await handleAddFood(data)
-    setIsOpen()
+    closeModal()
   }
 
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+    <Modal isOpen={isOpen} closeModal={closeModal}>
       <Form ref={formRef} onSubmit={handleSubmit}>
         <h1>Novo Prato</h1>
         <Input name="image" placeholder="Cole o link aqui" />
